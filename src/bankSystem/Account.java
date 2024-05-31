@@ -4,24 +4,28 @@ public abstract class Account {
 	private String hesapNo;
 	private double bakiye;
 	private CustomerAccount customer;
-	
-	/*1- Encaplusation - kapsülleme
-	 *2- Inheritance - Miras
-	 *3- Abstraction - Soyutlama 
-	 */
-	public Account(String hesapNo, double bakiye, CustomerAccount customer) {		
-		this.hesapNo = hesapNo;
+
+	public Account(double bakiye, CustomerAccount customer) {
+		this.hesapNo = AccountNumberGenerator.generateAccountNumber(this.getClass());
 		this.bakiye = bakiye;
 		this.customer = customer;
 	}
 	
-	
 	public abstract void paraYatir(double miktar);	
 	public abstract void paraCek(double miktar);
-	public abstract double bakiyeGoruntüle();
+	public abstract double bakiyeGoruntule();
+
 	
-	public void hesapBagla(CustomerAccount customer) {
-		customer.addAccount(this);
+
+	public String getHesapNo() {
+		return hesapNo;
 	}
 
+	public double getBakiye() {
+		return bakiye;
+	}
+
+	public CustomerAccount getCustomer() {
+		return customer;
+	}
 }
